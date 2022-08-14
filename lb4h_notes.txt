@@ -1,0 +1,131 @@
+
+##################################################
+### Chapter 1: Getting Started with the Basics ###
+##################################################
+
+# To change current user password
+passwd
+
+# Getting the logged in user
+whoami
+
+# Get the current directory
+pwd
+
+# Change directoy
+cd /etc
+
+# Change directory to the parent of this directory
+cd ..
+
+# Move two levels up (parent of the parent)
+cd ../..
+
+# Get a smiple list of directory content
+ls
+
+# Get a long list (with details of permissions, date modified, owner ..etc)
+ls -l
+
+# Get a long list AND include hidden files
+ls -la
+
+# Getting help (short description of the tool and how to use it)
+nmap -h
+# OR
+aircrack-ng --help
+
+# Getting the manual page with full description of the tool and its options and usage
+man aircrack-ng
+
+# To search entire filesystem for a keyword, use locate (note: its database is updated once a day)
+locate aircrack-ng
+
+# Search for Binaries (gives binary location, and its source and manual page location if any)
+whereis aircrack-ng
+
+# Search for binaries in the PATH variable
+which aircrack-ng
+
+# Powerful search with find (allows for search in specific directory, specific owner, specific permissions, and wildcards)
+# Search in the current dircetory (a single . refers to the current directory) for files (indicated by the type f) ending with .conf
+# Wildcards include: * (match anything), ? (match a single character), [] (match any character listed wthining the brackets ex: [c,b]at)
+find . -type f -name '*.conf'
+# Search in the the configuration direcotry /etc for files whose names contain the keyword apache2
+find /etc -type f -name apache2
+# find files starting from root directory / that are owned by root user, and have the permission mode 777
+find / -type f -user root -perm 777
+
+# filtering text results by pipelining to grep (powerful text matching tool)
+# filter the result of ps aux command (gives all running processes) to linex containing the keyword apache2
+ps aux | grep apache2
+# Another example for filtering listed files (include those containing the keyword notes)
+ls -l | grep notes
+
+# Print the content of a file
+cat filename
+
+# Create a file, and enter interactive mode to type text into that file (to exit, use Ctrl-D)
+cat > filename
+
+# Enter interactive mode to APPEND text to an existing file
+cat >> filename
+
+# Create a file on the fly (without adding any text to it)
+touch filename2
+
+# Copy file hosts from config dir to home Desktop dir
+cp /etc/hosts /home/kali/Desktop
+
+# Move a file frome one directory to another
+mv /home/kali/Desktop/myfile /newDir
+
+# Rename a file
+mv oldFileName newFileName
+
+# Create a new directory
+mkdir newDir
+
+# Removing (deleting) a file
+rm filename
+
+# Removing an EMPTY directory
+rmdir dirName
+
+# Removing a directory and child files/direcotires recurisevly (hence the -r option)
+rm -r dirName
+
+###################################################################################################
+
+####################################
+### Chapter 2: Text Manipulation ###
+####################################
+
+
+##################################################
+### Chapter 3: Analyzing and managing Networks ###
+##################################################
+
+# To show network configuration:
+ifconfig
+
+# To set ip address configuration for a particular NIC (eth0 in this case):
+ifconfig eth0 192.168.154.10
+
+# To set ip address and subnet mask (netmask) and broadcast address:
+ifconfig eth0 192.168.154.10 netmask 255.255.255.0 broadcast 192.168.154.255
+
+# Spoofing MAC address of a particular NIC (changing it!!!):
+sudo ifconfig eth0 down
+sudo ifconfig eth0 hw ether 00:11:22:33:44:55
+sudo ifconfig eth0 up
+
+
+# To reset IP address and request a fresh one from DHCP server:
+dhclient eth0
+
+# To check package availability in repostiories
+apt-cache search packagename
+
+# To install a new package using the Advanced Packaging Tool (APT)
+apt-get install snort
